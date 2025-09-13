@@ -132,9 +132,46 @@ const initializeFirebase = async () => {
 
 // --- Event Listeners ---
 // Ouve o clique no botão de login.
-loginBtn.addEventListener('click', () => {
+loginBtn.addEventListener('click', async () => {
     if (passwordInput.value === SECRET_PASSWORD) {
         console.log("Senha correta. Acesso concedido.");
+        // Ação para mostrar a tela principal e inicializar o Firebase.
+        try {
+            // Inicializa o app do Firebase com as configurações fornecidas.
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            setLogLevel('debug');
+            console.log("Firebase inicializado.");
+
+            // O 'onAuthStateChanged' é um "ouvinte" que detecta o estado de autenticação do usuário.
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    // Se o usuário está logado, armazena o ID e exibe a tela principal.
+                    userId = user.uid;
+                    console.log("Usuário autenticado:", userId);
+                    userInfoSpan.textContent = `Logado como ${userId.substring(0, 8)}...`;
+                    appIdSpan.textContent = appId;
+                    showMainApp();
+                    setupRealtimeClientsListener(userId);
+                } else {
+                    // Se não há usuário logado, exibe a tela de login.
+                    console.log("Nenhum usuário logado.");
+                    userId = null;
+                    showLogin();
+                }
+            });
+
+            // Tenta fazer o login com o token inicial ou anonimamente, se o token não existir.
+            if (initialAuthToken) {
+                await signInWithCustomToken(auth, initialAuthToken);
+            } else {
+                await signInAnonymously(auth);
+            }
+        } catch (error) {
+            console.error("Erro ao inicializar Firebase:", error);
+        }
+
     } else {
         showMessageModal('Senha incorreta!');
     }

@@ -7,12 +7,13 @@ import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-
 
 // Substitua esta configuração pelas informações do seu projeto Firebase
 const firebaseConfig = {
-  apiKey: "INSIRA_SUA_APIKEY_AQUI",
-  authDomain: "INSIRA_SEU_AUTHDOMAIN_AQUI",
-  projectId: "INSIRA_SEU_PROJECTID_AQUI",
-  storageBucket: "INSIRA_SEU_STORAGEBUCKET_AQUI",
-  messagingSenderId: "INSIRA_SEU_MESSAGINGSENDERID_AQUI",
-  appId: "INSIRA_SEU_APPID_AQUI"
+  apiKey: "AIzaSyCaKrCOyQ5rZs6Z6U73Yf-q1qQaYsQzc3A",
+  authDomain: "app-aniversario-c08f4.firebaseapp.com",
+  projectId: "app-aniversario-c08f4",
+  storageBucket: "app-aniversario-c08f4.firebasestorage.app",
+  messagingSenderId: "1031975722114",
+  appId: "1:1031975722114:web:19ec4e44c2965b6474689b",
+  measurementId: "G-2MZ8JNXJXR"
 };
 
 // Variáveis globais de configuração

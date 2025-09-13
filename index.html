@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversários - Psicologia</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Modal de Mensagens Personalizado -->
+    <div id="modal-message" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg p-6 shadow-xl w-full max-w-sm text-center">
+            <p id="modal-text" class="text-gray-800 font-medium mb-4"></p>
+            <button id="modal-close-btn" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Fechar</button>
+        </div>
+    </div>
+    
+    <div id="app-container" class="bg-white rounded-xl shadow-2xl p-8 w-full container">
+        
+        <!-- Seção de Login -->
+        <div id="login-section" class="text-center transition-opacity duration-500 opacity-100">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Feliz Aniversário!</h1>
+            <p class="text-gray-600 mb-8">Faça login para gerenciar os aniversários dos clientes.</p>
+            <div class="flex flex-col items-center">
+                <input type="text" id="password-input" placeholder="Digite sua senha" class="w-full md:w-2/3 lg:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4">
+                <button id="login-btn" class="w-full md:w-2/3 lg:w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors duration-300">Entrar</button>
+            </div>
+        </div>
+
+        <!-- Seção Principal da Aplicação -->
+        <div id="main-app" class="hidden transition-opacity duration-500 opacity-0">
+            <header class="flex justify-between items-center mb-6 border-b pb-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Clientes</h1>
+                    <p class="text-sm text-gray-500">
+                        <span id="user-info">Carregando...</span>
+                        <a href="#" id="logout-btn" class="text-red-500 hover:text-red-700 ml-2">Sair</a>
+                    </p>
+                </div>
+                <div class="text-sm text-gray-600 p-2 border rounded-lg bg-gray-50">
+                    ID do App: <span id="app-id">...</span>
+                </div>
+            </header>
+
+            <!-- Formulário para Adicionar Cliente -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-blue-800 mb-4">Adicionar Novo Cliente</h2>
+                <form id="add-client-form" class="space-y-4">
+                    <div>
+                        <label for="client-name" class="block text-gray-700 font-medium mb-1">Nome do Cliente:</label>
+                        <input type="text" id="client-name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="client-birthday" class="block text-gray-700 font-medium mb-1">Data de Aniversário:</label>
+                        <input type="date" id="client-birthday" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="client-phone" class="block text-gray-700 font-medium mb-1">Número de Telefone (WhatsApp):</label>
+                        <input type="tel" id="client-phone" placeholder="Ex: 5511999998888" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors duration-300">Adicionar Cliente</button>
+                </form>
+            </div>
+
+            <!-- Lista de Aniversariantes do Dia -->
+            <div id="birthdays-today" class="mb-8 hidden">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Aniversariantes de Hoje</h2>
+                <div id="today-birthdays-list" class="space-y-4">
+                    <!-- Aniversariantes do dia serão renderizados aqui -->
+                </div>
+            </div>
+
+            <!-- Lista de Clientes -->
+            <div id="client-list-container" class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Todos os Clientes</h2>
+                <div id="client-list" class="space-y-4">
+                    <!-- Clientes serão renderizados aqui -->
+                    <div class="text-center text-gray-500">Carregando clientes...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link para o arquivo JavaScript -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>

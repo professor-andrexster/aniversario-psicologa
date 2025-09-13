@@ -1,0 +1,29 @@
+/*
+    Estilos globais e de layout para o aplicativo.
+    Use classes do Tailwind CSS no HTML para a maioria dos estilos.
+    Este arquivo é para estilos personalizados ou ajustes finos.
+*/
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 900px;
+}
+
+/* Animação para a entrada do app */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#main-app {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilo para o modal de mensagem */
+#modal-message {
+    transition: opacity 0.3s ease-in-out;
+}

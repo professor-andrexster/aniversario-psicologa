@@ -123,7 +123,8 @@ const initializeFirebase = async () => {
         if (initialAuthToken) {
             await signInWithCustomToken(auth, initialAuthToken);
         } else {
-            await signInAnonymously(auth);
+            // O login anônimo será feito apenas na primeira vez, se o ambiente não tiver um token inicial.
+            // Para login com senha, a autenticação anônima é chamada pelo botão de login.
         }
     } catch (error) {
         console.error("Erro ao inicializar Firebase:", error);
@@ -135,6 +136,7 @@ const initializeFirebase = async () => {
 loginBtn.addEventListener('click', async () => {
     if (passwordInput.value === SECRET_PASSWORD) {
         console.log("Senha correta. Acesso concedido.");
+        // A autenticação anônima é chamada apenas aqui, após a validação da senha.
         await signInAnonymously(auth);
     } else {
         showMessageModal('Senha incorreta!');
@@ -211,7 +213,7 @@ const getBirthdayMessage = (clientName) => {
         `Olá, ${clientName}! A Dra. da sua psicóloga deseja um feliz e inspirador aniversário! Que seu novo ciclo seja repleto de autoconhecimento e crescimento. Conte com ela para essa jornada. 🎂`,
         `Parabéns, ${clientName}! A Dra. e a sua equipe te desejam um dia maravilhoso, cheio de luz e comemoração. Que este novo ano te fortaleça ainda mais. ✨`,
         `Feliz aniversário, ${clientName}! A jornada da vida é única e a sua tem sido admirável. A Dra. te envia os melhores votos e está à disposição para te acompanhar. 🎈`,
-        `Que seu dia seja tão incrível quanto você, ${client.name}! A Dra. te deseja um feliz aniversário e um novo ano de vida com muita paz e realizações. 😊`,
+        `Que seu dia seja tão incrível quanto você, ${clientName}! A Dra. te deseja um feliz aniversário e um novo ano de vida com muita paz e realizações. 😊`,
     ];
     return messages[Math.floor(Math.random() * messages.length)];
 };

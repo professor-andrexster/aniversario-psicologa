@@ -135,6 +135,7 @@ const initializeFirebase = async () => {
 loginBtn.addEventListener('click', async () => {
     if (passwordInput.value === SECRET_PASSWORD) {
         console.log("Senha correta. Acesso concedido.");
+        await signInAnonymously(auth);
     } else {
         showMessageModal('Senha incorreta!');
     }

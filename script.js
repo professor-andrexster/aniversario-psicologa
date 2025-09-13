@@ -5,10 +5,18 @@ import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged, 
 import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-// Variáveis globais de configuração (fornecidas pelo ambiente)
-// Estas variáveis são essenciais para conectar o app ao seu projeto no Firebase.
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+// Substitua esta configuração pelas informações do seu projeto Firebase
+const firebaseConfig = {
+  apiKey: "INSIRA_SUA_APIKEY_AQUI",
+  authDomain: "INSIRA_SEU_AUTHDOMAIN_AQUI",
+  projectId: "INSIRA_SEU_PROJECTID_AQUI",
+  storageBucket: "INSIRA_SEU_STORAGEBUCKET_AQUI",
+  messagingSenderId: "INSIRA_SEU_MESSAGINGSENDERID_AQUI",
+  appId: "INSIRA_SEU_APPID_AQUI"
+};
+
+// Variáveis globais de configuração
+const appId = firebaseConfig.appId;
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
 // Elementos do DOM (Document Object Model)

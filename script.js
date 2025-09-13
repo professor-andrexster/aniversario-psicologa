@@ -311,3 +311,8 @@ const renderTodayBirthdays = (clients) => {
 
 // Inicia a aplicação. Esta é a primeira função que é chamada quando a página carrega.
 initializeFirebase();
+
+
+
+
+
